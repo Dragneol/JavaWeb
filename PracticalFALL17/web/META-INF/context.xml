@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/NgocNTSE62292Practical">
+<Resource 
+    name="NgocNTSE62292"
+    type="javax.sql.DataSource"
+    auth="Container"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    url="jdbc:sqlserver://localhost:1433;databaseName=PRACFA17;instanceName=SQLEXPRESS"
+    username="sa"
+    password="Dragneol1"
+/>
+</Context>

@@ -1,0 +1,48 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        
+        <action name="">
+            <result>login.html</result>
+        </action>
+        
+        <action name="try">
+            <result>login.html</result>
+        </action>
+        
+        <action name="login" class="sample.struts2.LoginAction">
+            <result name="success">search.jsp</result>
+            <result name="fail" type="redirect">invalid.html</result>
+        </action>
+        
+        <action name="searchLastName" class="sample.struts2.SearchLastNameAction">
+            <result name="success">search.jsp</result>
+        </action>
+        
+        <action name="deleteRecord" class="sample.struts2.DeleteRecordAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchLastName</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail">error.html</result>
+        </action>
+        
+        <action name="updateRecord" class="sample.struts2.UpdateAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchLastName</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail">error.html</result>
+        </action>
+        
+        <action name="register" class="sample.struts2.RegisterAction">
+            <exception-mapping>java.sql.SQLException</exception-mapping>
+            <result name="success">login.html</result>
+            <result name="fail">error.html</result>
+        </action>
+    </package>
+</struts>

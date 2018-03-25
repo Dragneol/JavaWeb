@@ -1,0 +1,97 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>SignInPage.jsp</result>
+        </action>
+        
+        <action name="signin" class="sample.struts.SigninAction">
+            <result name="successAsStaff">StaffPage.jsp</result>
+            <result name="successAsUser">UserPage.jsp</result>
+            <result name="fail">SignInPage.jsp</result>
+            <result name="input">SignInPage.jsp</result>
+        </action>
+        
+        <action name="logout" class="sample.struts.LogoutAction">
+            <result name="success">SignInPage.jsp</result>
+        </action>
+        
+        <action name="signupPage">
+            <result>Register.jsp</result>
+        </action>
+        
+        <action name="register" class="sample.struts.RegisterAction">
+            <result name="success">UserPage.jsp</result>
+            <exception-mapping exception="java.sql.SQLException" result="input"/>
+            <result name="input">Register.jsp</result>
+            <result name="fail" type="redirect">RegisterErr.html</result>
+        </action>
+        
+        <action name="searchIDorName" class="sample.struts.SearchIDorNameAction">
+            <result name="success">StaffPage.jsp</result>
+        </action>
+        
+        <action name="updatedelete" class="sample.struts.UpdateDeleteAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchIDorName</param>
+                <param name="searchValue">${searchValue}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">searchIDorName</param>
+                <param name="searchValue">${searchValue}</param>
+            </result>
+            <result name="fail" type="redirect">UpdateDeleteErr.html</result>
+        </action>
+        
+        <action name="add" class="sample.struts.AddAction">
+            <result name="success">StaffPage.jsp</result>
+            <exception-mapping exception="java.sql.SQLException" result="input"/>
+            <result name="input">StaffPage.jsp</result>
+            <result name="fail" type="redirect">AddErr.html</result>
+        </action>
+        
+        <action name="searchPrice" class="sample.struts.SearchPriceAction">
+            <result name="success">UserPage.jsp</result>
+            <result name="input">UserPage.jsp</result>
+        </action>
+        
+        <action name="addToCart" class="sample.struts.AddToCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchPrice</param>
+                <param name="minPrice">${minPrice}</param>
+                <param name="maxPrice">${maxPrice}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">searchPrice</param>
+                <param name="minPrice">${minPrice}</param>
+                <param name="maxPrice">${maxPrice}</param>
+            </result>
+            <result name="fail" type="redirect">AddErr.html</result>
+        </action>
+        
+        <action name="cart" class="sample.struts.ViewCartAction">
+            <result name="success">Cart.jsp</result>
+        </action>
+        <action name="updateCart" class="sample.struts.UpdateCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">cart</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">cart</param>
+            </result>
+            <result name="fail" type="redirect">UpdateDeleteErr.html</result>
+        </action>
+        
+        <action name="deleteFromCart" class="sample.struts.DeleteFromCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">cart</param>
+            </result>
+            <result name="fail" type="redirect">UpdateDeleteErr.html</result>
+        </action>
+        
+    </package>
+</struts>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/DeliveryManagement">
+    <Resource 
+        auth="Container" 
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+        name="DBSource" 
+        type="javax.sql.DataSource" 
+        url="jdbc:sqlserver://localhost:1433;databaseName = DeliveryManagement" 
+        username="sa"
+        password="Dragneol1" 
+    />
+</Context>
