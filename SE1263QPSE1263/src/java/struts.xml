@@ -1,0 +1,22 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>login.html</result>
+        </action>
+        <action name="login" class="practical.struts2.LoginAction">
+            <result name="true">search.jsp</result>
+            <result name="false">invalid.html</result>
+        </action>
+        <action name="logout" class="practical.struts2.LogoutAction">
+            <result>login.html</result>
+        </action>
+        <action name="search" class="practical.struts2.SearchAction">
+            <result>search.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,17 @@
+﻿request guiwr về server theo 3 đường
+- nhapạ thanh url
+- nhấn nút dubnmit về server
+- 
+
+parameter có 7 đặc điểm
+- Giá trị truyền từ server về cilent lad String name=value thông qua request
+- readonly
+- tên có thể trùng
+- parameter k có thì sẽ server sẽ lấy null
+- getparamenter mặc định sẽ lấy gái trị đầu tiên
+- vòng đời : parameter tồn tại tham số từ khi request message chạm đến container cho đến respone message trả về thành công
+
+jsessionid, là phiên làm việc tại mỗi phiên làm việc, trình duyệt tự generate, mỗi lần mỗi khác
+
+mọi thứ nằm trong thư mục web page có thể truy cập trực tiếp từ clident
+còn trong sourrce package phải có url parten
