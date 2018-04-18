@@ -5,7 +5,16 @@
         driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
         name="DBSource" 
         type="javax.sql.DataSource" 
-        url="jdbc:sqlserver://localhost:1433;databaseName = DeliveryManagement" 
+        url="jdbc:sqlserver://localhost:1433;databaseName=DeliveryManagement" 
+        username="sa"
+        password="" 
+    />
+    <Resource 
+        auth="Container" 
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+        name="DBSource" 
+        type="javax.sql.DataSource" 
+        url="jdbc:sqlserver://localhost:1433;databaseName=DeliveryManagement" 
         username="sa"
         password="Dragneol1" 
     />

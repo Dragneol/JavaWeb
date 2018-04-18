@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/JavaWeb/DemoAjaxFilter/web/welcome.html</file>
-            <file>file:/E:/JavaWeb/DemoAjaxFilter/web/js/idols.js</file>
-            <file>file:/E:/JavaWeb/DemoAjaxFilter/src/java/com/tiendat/filter/DispatcherFilter.java</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/src/java/com/tiendat/daos/IdolDAO.java</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/web/WEB-INF/web.xml</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/src/java/com/tiendat/filter/DispatcherFilter.java</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/src/java/com/tiendat/dtos/IdolDTO.java</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/web/welcome.html</file>
+            <file>file:/D:/JavaWeb/DemoAjaxFilter/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -1,0 +1,17 @@
+<%-- 
+    Document   : search
+    Created on : Apr 17, 2018, 7:38:51 AM
+    Author     : DuongPTHSE62871
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+</html>
