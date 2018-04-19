@@ -5,12 +5,15 @@
  */
 package duongpth.models;
 
+import duongpth.objects.RegistrationDTO;
 import duongpth.utils.DBUtil;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -52,5 +55,29 @@ public class RegistrationDAO implements Serializable {
             closeConnection();
         }
         return role;
+    }
+
+    public List<RegistrationDTO> searchLikeFullName(String search) throws ClassNotFoundException, SQLException {
+        List<RegistrationDTO> result = null;
+        String username, fullname, role;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "Select Username, FullName, Role from Registration where Fullname like ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, "%" + search + "%");
+                resultSet = preparedStatement.executeQuery();
+                result = new ArrayList<>();
+                while (resultSet.next()) {
+                    username = resultSet.getString("Username");
+                    fullname = resultSet.getString("Fullname");
+                    role = resultSet.getString("Role");
+                    result.add(new RegistrationDTO(username, role, fullname));
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
 }

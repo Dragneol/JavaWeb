@@ -6,6 +6,7 @@
 package duongpth.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DuongPTHSE62871
  */
-public class MainController extends HttpServlet {
+public class DeleteController extends HttpServlet {
 
-    public static final String ERROR = "error.jsp";
-    private static final String LOGIN = "LoginController";
-    private static final String SEARCH = "SearchController";
-    private static final String DELETE = "DeleteController";
+    private static final String SUCCESS = "admin.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +32,13 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String path = ERROR;
+        String location = SUCCESS;
         try {
-            String action = request.getParameter("btnAction");
-            switch (action) {
-                case "Login":
-                    path = LOGIN;
-                    break;
-                case "Search":
-                    path = SEARCH;
-                    break;
-                case "Delete":
-                    path = DELETE;
-                    break;
-                default:
-                    request.setAttribute("ERROR", "Action is not supported");
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(path).forward(request, response);
+            request.getRequestDispatcher(location).forward(request, response);
         }
     }
 
