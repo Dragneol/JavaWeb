@@ -14,10 +14,11 @@
     <body>
         <h1>Login Page</h1>
         <form action="MainController" method="POST">
-            Username <input type="text" name="username" value="" /><br/>
-            Password <input type="password" name="password" value="" /><br/>            
+            Username <input type="text" name="username" value="duong" /><br/>
+            Password <input type="password" name="password" value="duong" /><br/>            
             <input type="submit" value="Login" name="btnAction" />
             <input type="reset" value="Reset" name="btnAction" />
         </form>
+        <a href="insert.jsp">Sign Up</a>
     </body>
 </html>

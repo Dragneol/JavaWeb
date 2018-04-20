@@ -16,6 +16,14 @@
         <servlet-name>DeleteController</servlet-name>
         <servlet-class>duongpth.controllers.DeleteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateController</servlet-name>
+        <servlet-class>duongpth.controllers.CreateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateController</servlet-name>
+        <servlet-class>duongpth.controllers.UpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>DeleteController</servlet-name>
         <url-pattern>/DeleteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateController</servlet-name>
+        <url-pattern>/CreateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateController</servlet-name>
+        <url-pattern>/UpdateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

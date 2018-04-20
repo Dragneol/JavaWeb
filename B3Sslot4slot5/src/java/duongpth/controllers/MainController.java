@@ -21,6 +21,8 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "LoginController";
     private static final String SEARCH = "SearchController";
     private static final String DELETE = "DeleteController";
+    private static final String CREATE = "CreateController";
+    private static final String UPDATE = "UpdateController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +48,15 @@ public class MainController extends HttpServlet {
                     break;
                 case "Delete":
                     path = DELETE;
+                    break;
+                case "Register":
+                    path = CREATE;
+                    break;
+                case "Update":
+                    path = UPDATE;
+                    break;
+                case "View":
+                    path = UPDATE;
                     break;
                 default:
                     request.setAttribute("ERROR", "Action is not supported");

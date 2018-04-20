@@ -17,7 +17,10 @@
         <h1>Hello Admin!</h1>
         <h2>Search User</h2>
         <form action="MainController" method="POST">
-            FullName : <input type="text" name="searchField" value="" />
+            FullName : <input type="text" name="searchField" 
+                              <% if (request.getParameter("searchField") != null) { %> 
+                              value="<%= request.getParameter("searchField") %>" 
+                              <% } %> />
             <input type="submit" value="Search" name="btnAction" />
         </form>
 
@@ -52,9 +55,15 @@
                     <td><%= dto.getUsername()%></td>
                     <td><%= dto.getFullname()%></td>
                     <td><%= dto.getRole()%></td>
-                    <td></td>
                     <td>
-                        <a href="MainController?btnAction=Delete">Delete</a>
+                        <form action="MainController" method="POST">
+                            <input type="hidden" name="pk" value="<%= dto.getUsername()%>" />
+                            <input type="hidden" name="searchField" value="<%= request.getParameter("searchField")%>" />
+                            <input type="submit" value="View" name="btnAction" />
+                        </form>
+                    </td>
+                    <td>
+                        <a href="MainController?btnAction=Delete&username=<%= dto.getUsername()%>&searchField=<%= request.getParameter("searchField")%>">Delete</a>
                     </td>
                 </tr>
                 <%                    }

@@ -6,6 +6,7 @@
 package duongpth.controllers;
 
 import duongpth.models.RegistrationDAO;
+import duongpth.objects.RegistrationDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DuongPTHSE62871
  */
-public class DeleteController extends HttpServlet {
+public class UpdateController extends HttpServlet {
 
+    private static final String VIEW = "update.jsp";
     private static final String SUCCESS = "SearchController";
 
     /**
@@ -33,22 +35,43 @@ public class DeleteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String location = SUCCESS;
+        String url = MainController.ERROR;
+        RegistrationDAO dao;
+        RegistrationDTO dto;
         try {
-            String user = request.getParameter("username");
-            RegistrationDAO dao = new RegistrationDAO();
+            String action = request.getParameter("btnAction");
+            switch (action) {
+                case "View":
+                    String pk = request.getParameter("pk");
+                    dao = new RegistrationDAO();
+                    dto = dao.findByPrimaryKey(pk);
+                    request.setAttribute("USER", dto);
+                    url = VIEW;
+                    break;
+                case "Update":
+                    String username = request.getParameter("username");
+                    String fullname = request.getParameter("fullname");
+                    String password = request.getParameter("password");
+                    String role = request.getParameter("role");
 
-            boolean deleted = dao.delete(user);
+                    dao = new RegistrationDAO();
+                    dto = new RegistrationDTO(username, role, fullname);
+                    dto.setPassword(password);
+                    boolean updated = dao.update(dto);
+                    if (updated) {
+                        url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Update Failed");
+                    }
+                    break;
 
-            if (deleted) {
-                location = SUCCESS;
-            } else {
-                request.setAttribute("ERROR", "Delete failed");
+                default:
+                    request.setAttribute("ERROR", "Action not supported");
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(location).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
