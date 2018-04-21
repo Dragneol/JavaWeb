@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="B3Sslot4slot5" default="default" basedir=".">
-    <description>Builds, tests, and runs the project B3Sslot4slot5.</description>
+<project name="B3Sslot4slot5slot6slot7slot8" default="default" basedir=".">
+    <description>Builds, tests, and runs the project B3Sslot4slot5slot6slot7slot8.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
