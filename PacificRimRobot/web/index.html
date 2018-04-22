@@ -6,11 +6,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>FBI International Defend</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <form action="org.apache.struts2.dispatcher.FilterDispatcher">
+            Username <input type="text" name="username" value="" /><br/>
+            Password <input type="password" name="password" value="" />
+            <input type="submit" value="SignIn" name="action" />
+            <input type="reset" value="Reset" name="action" />
+        </form>
     </body>
 </html>
