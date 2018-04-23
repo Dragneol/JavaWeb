@@ -5,6 +5,14 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        
+        <action name="">
+            <result>index.html</result>
+        </action>
+        <action name="generalLogin">
+            <result>generalLogin.jsp</result>
+        </action>
+        <action name="pilotLogin">
+            <result>pilotLogin.jsp</result>
+        </action>
     </package>
 </struts>
