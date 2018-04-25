@@ -6,7 +6,7 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <action name="">
-            <result>index.html</result>
+            <result>index.jsp</result>
         </action>
         <action name="generalLogin">
             <result>generalLogin.jsp</result>

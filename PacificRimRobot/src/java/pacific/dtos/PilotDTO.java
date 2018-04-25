@@ -13,26 +13,15 @@ import java.io.Serializable;
  */
 public class PilotDTO implements Serializable {
 
-    private String username, password, firstName, lastName, middleName, groupCode;
+    private String username, password, firstName, lastName, citizenship, groupCode, ranker, imgLink;
     private float weight, height;
 
     public PilotDTO() {
     }
 
-    public PilotDTO(String username, String firstName, String groupCode) {
-        this.username = username;
-        this.firstName = firstName;
-        this.groupCode = groupCode;
-    }
-
-    public PilotDTO(String username, String firstName, String lastName, String middleName, String groupCode, float weight, float height) {
-        this.username = username;
+    public PilotDTO(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleName = middleName;
-        this.groupCode = groupCode;
-        this.weight = weight;
-        this.height = height;
     }
 
     /**
@@ -92,20 +81,6 @@ public class PilotDTO implements Serializable {
     }
 
     /**
-     * @return the middleName
-     */
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    /**
-     * @param middleName the middleName to set
-     */
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    /**
      * @return the groupCode
      */
     public String getGroupCode() {
@@ -145,5 +120,52 @@ public class PilotDTO implements Serializable {
      */
     public void setHeight(float height) {
         this.height = height;
+    }
+//
+//    @Override
+//    public String toString() {
+//        return firstName + lastName;
+//    }
+
+    /**
+     * @return the citizenship
+     */
+    public String getCitizenship() {
+        return citizenship;
+    }
+
+    /**
+     * @param citizenship the citizenship to set
+     */
+    public void setCitizenship(String citizenship) {
+        this.citizenship = citizenship;
+    }
+
+    /**
+     * @return the ranker
+     */
+    public String getRanker() {
+        return ranker;
+    }
+
+    /**
+     * @param ranker the ranker to set
+     */
+    public void setRanker(String ranker) {
+        this.ranker = ranker;
+    }
+
+    /**
+     * @return the imgLink
+     */
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    /**
+     * @param imgLink the imgLink to set
+     */
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
     }
 }

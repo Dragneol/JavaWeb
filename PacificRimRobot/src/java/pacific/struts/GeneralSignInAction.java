@@ -5,16 +5,12 @@
  */
 package pacific.struts;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import java.util.Map;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
-import pacific.daos.PilotDAO;
-import pacific.dtos.PilotDTO;
 
 /**
  *
@@ -22,33 +18,23 @@ import pacific.dtos.PilotDTO;
  */
 @ResultPath("/")
 @Results({
-    @Result(name = "true", location = "pilot.jsp")
+    @Result(name = "true", location = "general.jsp")
     ,
-    @Result(name = "false", location = "pilotLogin.jsp", params = {"ERROR", "${message}"})
+    @Result(name = "false", location = "generalLogin.jsp", params = {"ERROR", "${message}"})
     ,
-    @Result(name = "input", location = "pilotLogin.jsp")
-
+    @Result(name = "input", location = "generalLogin.jsp")
 })
-public class PilotSignInAction extends ActionSupport {
+public class GeneralSignInAction extends ActionSupport {
 
-    private String username, password, message;
+    private String username;
+    private String password;
+    private String message;
 
-    public PilotSignInAction() {
+    public GeneralSignInAction() {
     }
 
     public String execute() throws Exception {
-        System.out.println("foo");
-        PilotDAO dao = new PilotDAO();
-        PilotDTO dto = dao.signIn(getUsername(), getPassword());
-        Boolean result = false;
-        if (dto != null) {
-            result = true;
-            Map session = ActionContext.getContext().getSession();
-            session.put("AUTHORIZED", dto);
-        } else {
-            setMessage("Invalid Username or Password");
-        }
-        return result.toString();
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

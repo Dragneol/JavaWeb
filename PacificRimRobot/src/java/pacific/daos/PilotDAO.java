@@ -38,19 +38,19 @@ public class PilotDAO implements Serializable {
 
     public PilotDTO signIn(String username, String password) throws SQLException, NamingException {
         PilotDTO dto = null;
-        String firstname, groupCode;
+        String firstname, lastname;
         try {
             connection = DBUtil.getConnection();
             if (connection != null) {
-                String sql = "Select FirstName, GroupCode from Pilot Where Username = ? And Password = ? And Available = 1";
+                String sql = "Select FirstName, LastName from Pilot Where Username = ? And Password = ? And Available = 1";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     firstname = resultSet.getString("FirstName");
-                    groupCode = resultSet.getString("GroupCode");
-                    dto = new PilotDTO(username, firstname, groupCode);
+                    lastname = resultSet.getString("LastName");
+                    dto = new PilotDTO(firstname, lastname);
                 }
             }
         } finally {
@@ -61,23 +61,24 @@ public class PilotDAO implements Serializable {
 
     public PilotDTO findByUsername(String username) throws NamingException, SQLException {
         PilotDTO dto = null;
-        String firstname, lastname, middlename, groupCode;
+        String firstname, lastname, citizenship, groupCode, ranker, imglink;
         float weight, height;
         try {
             connection = DBUtil.getConnection();
             if (connection != null) {
-                String sql = "Select FirstName, LastName, MiddleName, Weight, Height, GroupCode from Pilot Where Username = ? And Available = 1";
+                String sql = "Select FirstName, LastName, Weight, Height, GroupCode, Citizenship, Ranker, ImgLink from Pilot Where Username = ? And Available = 1";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, username);
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     firstname = resultSet.getString("FirstName");
                     lastname = resultSet.getString("LastName");
-                    middlename = resultSet.getString("MiddleName");
                     groupCode = resultSet.getString("GroupCode");
                     weight = resultSet.getFloat("Weight");
                     height = resultSet.getFloat("Height");
-                    dto = new PilotDTO(username, firstname, lastname, middlename, groupCode, weight, height);
+                    citizenship = resultSet.getString("Citizenship");
+                    ranker = resultSet.getString("Ranker");
+                    imglink = resultSet.getString("ImgLink");
                 }
             }
         } finally {

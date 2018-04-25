@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pilot
-    Created on : Apr 22, 2018, 11:45:31 PM
+    Document   : general
+    Created on : Apr 25, 2018, 10:18:02 AM
     Author     : DuongPTHSE62871
 --%>
 
@@ -17,3 +17,4 @@
     </body>
     <jsp:include page="footer.jsp"/>
 </html>
+

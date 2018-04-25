@@ -1,0 +1,71 @@
+(function($) {
+ 	$( document ).ready(function() {
+ 		$("ul#menu-language").hide();
+ 		if ($(window).width() < 1000) {
+		   $("ul#menu-language").appendTo('.icon-salient-spotify');
+		}
+		else {
+		   $("ul#menu-language").insertAfter('a[href$="lang"]');
+		}
+	});
+
+ 	// We are checking to see if the user is on a mobile device so event is triggered by Touch rather than Click
+	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+	jQuery(document).ready(function($){
+	    if(!isMobile) {
+	      $('a[href$="lang"]').click(function(e){
+			    e.preventDefault();
+			    $("ul#menu-language").toggle("fade");
+			});
+	    } else{
+	      $('a[href$="lang"]').on("touchstart", function(e){
+				e.preventDefault();
+				$("ul#menu-language").toggle("fade");
+			});
+	    }
+	});
+
+	$("ul#menu-language").mouseleave(function(){
+	    $(this).fadeOut();
+	});
+
+})(jQuery);
+
+// Various check to determine user device / browser
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+
+// Pin pad
+(function($) {
+	$( document ).ready(function(){
+		$('.hidden-load').css('opacity','1');
+	});
+
+	if( !$('#PINform').length && $('.page-template-template-password').length){
+		$(".container-wrap.password").addClass('pin-entered');
+
+		$( document ).ready(function() {
+		    var width = 1;
+		    var id = setInterval(frame, 30);
+		    function frame() {
+		        if (width >= 100) {
+		            clearInterval(id);
+		        } else {
+		            width++; 
+		            $('.se-pre-con p span').text(width);
+		        }
+		    }
+		});
+
+		// Wait for window load then hide loader
+		setTimeout(function() {
+		  	// Animate loader off screen
+		  	$(".se-pre-con").fadeOut("slow");
+   			$(".container-wrap.password").addClass('in-focus');
+		  	$('.password .countdown').fadeIn("slow");
+		  	$('.password .main-content .hidden-load').css('display','none');
+		}, 0);
+		
+	} else{
+		$(".se-pre-con").css('display','none');
+	}
+})(jQuery);
