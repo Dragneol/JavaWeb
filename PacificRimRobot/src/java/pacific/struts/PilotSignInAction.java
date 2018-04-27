@@ -22,12 +22,11 @@ import pacific.dtos.PilotDTO;
  */
 @ResultPath("/")
 @Results({
-    @Result(name = "true", location = "pilot.jsp")
+    @Result(name = "true", location = "pilot/index.jsp")
     ,
-    @Result(name = "false", location = "pilotLogin.jsp", params = {"ERROR", "${message}"})
+    @Result(name = "false", location = "pilot/login.jsp", params = {"ERROR", "${message}"})
     ,
-    @Result(name = "input", location = "pilotLogin.jsp")
-
+    @Result(name = "input", location = "pilot/login.jsp")
 })
 public class PilotSignInAction extends ActionSupport {
 
@@ -37,7 +36,6 @@ public class PilotSignInAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        System.out.println("foo");
         PilotDAO dao = new PilotDAO();
         PilotDTO dto = dao.signIn(getUsername(), getPassword());
         Boolean result = false;
@@ -45,6 +43,7 @@ public class PilotSignInAction extends ActionSupport {
             result = true;
             Map session = ActionContext.getContext().getSession();
             session.put("AUTHORIZED", dto);
+            session.put("ROLE", "PILOT");
         } else {
             setMessage("Invalid Username or Password");
         }

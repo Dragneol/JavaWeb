@@ -5,24 +5,28 @@
  */
 package pacific.struts;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import java.util.Map;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
+import pacific.daos.GeneralDAO;
+import pacific.dtos.GeneralDTO;
 
 /**
  *
  * @author DuongPTHSE62871
  */
-@ResultPath("/")
+@ResultPath("/general/")
 @Results({
-    @Result(name = "true", location = "general.jsp")
+    @Result(name = "true", location = "index.jsp")
     ,
-    @Result(name = "false", location = "generalLogin.jsp", params = {"ERROR", "${message}"})
+    @Result(name = "false", location = "login.jsp", params = {"ERROR", "${message}"})
     ,
-    @Result(name = "input", location = "generalLogin.jsp")
+    @Result(name = "input", location = "login.jsp")
 })
 public class GeneralSignInAction extends ActionSupport {
 
@@ -34,7 +38,18 @@ public class GeneralSignInAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Boolean result = false;
+        GeneralDAO dao = new GeneralDAO();
+        GeneralDTO dto = dao.signIn(username, password);
+        if (dto != null) {
+            result = true;
+            Map session = ActionContext.getContext().getSession();
+            session.put("AUTHORIZED", dto);
+            session.put("ROLE", "GENERAL");
+        } else {
+            setMessage("Invalid Username or Password");
+        }
+        return result.toString();
     }
 
     /**

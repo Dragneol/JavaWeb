@@ -38,11 +38,11 @@ public class PilotDAO implements Serializable {
 
     public PilotDTO signIn(String username, String password) throws SQLException, NamingException {
         PilotDTO dto = null;
-        String firstname, lastname;
+        String firstname, lastname, group;
         try {
             connection = DBUtil.getConnection();
             if (connection != null) {
-                String sql = "Select FirstName, LastName from Pilot Where Username = ? And Password = ? And Available = 1";
+                String sql = "Select FirstName, LastName, GroupCode from Pilot Where Username = ? And Password = ? And Available = 1";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
@@ -50,7 +50,8 @@ public class PilotDAO implements Serializable {
                 if (resultSet.next()) {
                     firstname = resultSet.getString("FirstName");
                     lastname = resultSet.getString("LastName");
-                    dto = new PilotDTO(firstname, lastname);
+                    group = resultSet.getString("GroupCode");
+                    dto = new PilotDTO(username, firstname, lastname, group);
                 }
             }
         } finally {

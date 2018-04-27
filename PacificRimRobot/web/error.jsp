@@ -11,7 +11,8 @@
 
 <jsp:include page="header.jsp"/>
 <div class="ai-video-wrapper">
-    <h3>Announcement</h3>
-    <a>An error occurs</a>
-</div>
-<jsp:include page="footer.jsp"/>
+        <h3>Announcement</h3>
+        <a>An error occurs</a>
+        <font color="red">${requestScope.ERROR}</font>
+    </body>
+</html>

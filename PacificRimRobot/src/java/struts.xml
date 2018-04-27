@@ -9,10 +9,19 @@
             <result>index.jsp</result>
         </action>
         <action name="generalLogin">
-            <result>generalLogin.jsp</result>
+            <result>general/login.jsp</result>
         </action>
         <action name="pilotLogin">
-            <result>pilotLogin.jsp</result>
+            <result>pilot/login.jsp</result>
+        </action>
+        <action name="generalFunc1">
+            <result>general/robotManaged.jsp</result>
+        </action>
+        <action name="generalFunc2">
+            <result>general/weaponManaged.jsp</result>
+        </action>
+        <action name="generalFunc3">
+            <result>general/pilotManaged.jsp</result>
         </action>
     </package>
 </struts>

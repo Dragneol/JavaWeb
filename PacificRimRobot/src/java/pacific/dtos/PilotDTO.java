@@ -19,9 +19,11 @@ public class PilotDTO implements Serializable {
     public PilotDTO() {
     }
 
-    public PilotDTO(String firstName, String lastName) {
+    public PilotDTO(String username, String firstName, String lastName, String groupCode) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.groupCode = groupCode;
     }
 
     /**
