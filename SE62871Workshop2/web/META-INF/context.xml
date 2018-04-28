@@ -7,7 +7,7 @@
         type="javax.sql.DataSource" 
         url="jdbc:sqlserver://localhost:1433;databaseName = WorkshopPRJ321" 
         username="sa"
-        password="Dragneol1" 
+        password="123" 
     />
     <Resource 
         auth="Container" 
@@ -16,6 +16,6 @@
         type="javax.sql.DataSource" 
         url="jdbc:sqlserver://localhost:1433;databaseName = WorkshopPRJ321" 
         username="sa"
-        password="" 
+        password="Dragneol1" 
     />
 </Context>

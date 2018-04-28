@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,13 +29,17 @@
         <s:head/>
     </head>
     <body>
-        <h3>Welcome, General <s:property value="%{#session.AUTHORIZED.firstName}"/> <s:property value="%{#session.AUTHORIZED.miidleName}"/> <s:property value="%{#session.AUTHORIZED.lastName}"/>.</h3>        
+        <h3>Welcome, General
+            <s:property value="%{#session.AUTHORIZED.firstName}"/>
+            <s:property value="%{#session.AUTHORIZED.middleName}"/>
+            <s:property value="%{#session.AUTHORIZED.lastName}"/>
+        </h3>
         <s:form action="robot-manipulate">
-            <s:textfield label="Robot Name" name="searchField" value="%{#searchField}"/>
+            <s:textfield label="Robot Name" name="searchField" value="%{searchField}"/>
             <s:submit label="Search"/>
         </s:form>
 
-        <s:if test="%{message != ''}">
+        <s:if test="%{searchField == null || searchField == '' || message != ''}">
             <h3><s:property value="message"/></h3>
         </s:if>
         <s:else>
@@ -64,9 +67,8 @@
                                 <td><s:property value="%{#jeager.name}"/></td>
                                 <td><s:checkbox name="available" value="%{#jeager.available}"/></td>
                                 <td>
-                                    <s:url action="robot-info" var="view">
-                                        <s:param name="name" value="%{#jeager.name}"/>
-                                    </s:url>
+                                    <s:hidden name="searchField" value="%{searchField}"/>
+                                    <s:hidden name="name" value="%{#jeager.name}"/>
                                     <s:submit label="View" value="view"/>
                                 </td>
                             </tr>

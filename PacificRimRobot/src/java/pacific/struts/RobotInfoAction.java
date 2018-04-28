@@ -18,19 +18,42 @@ import pacific.dtos.RobotDTO;
  */
 @ResultPath("/general/")
 @Results(
-@Result(name = "success", location = "roboUpdater.jsp")
+        @Result(name = "success", location = "roboUpdater.jsp", params = {"searchField", "${searchField}", "jeager", "${jeager}"})
 )
 public class RobotInfoAction extends ActionSupport {
 
+    private String searchField;
     private String name;
-    private RobotDTO dto;
+    private RobotDTO jeager;
+
     public RobotInfoAction() {
     }
 
     public String execute() throws Exception {
         RobotDAO dao = new RobotDAO();
-        dto = dao.findByPrimaryKey(name);
+        jeager = dao.findByPrimaryKey(getName());
         return SUCCESS;
+    }
+
+    /**
+     * @return the jeager
+     */
+    public RobotDTO getJeager() {
+        return jeager;
+    }
+
+    /**
+     * @return the searchField
+     */
+    public String getSearchField() {
+        return searchField;
+    }
+
+    /**
+     * @param searchField the searchField to set
+     */
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
     }
 
     /**
@@ -45,13 +68,6 @@ public class RobotInfoAction extends ActionSupport {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the dto
-     */
-    public RobotDTO getDto() {
-        return dto;
     }
 
 }

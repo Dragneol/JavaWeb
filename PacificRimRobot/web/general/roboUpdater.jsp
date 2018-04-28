@@ -13,14 +13,29 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Hello, General <s:property value="%{#session.AUTHORIZED.firstName}"/> <s:property value="%{#session.AUTHORIZED.miidleName}"/> <s:property value="%{#session.AUTHORIZED.lastName}"/>.</h3>
-        <s:form action="robot-update" method="POST">
-            <s:textfield label="Jeager" value="%{dto.name}"/>
+        <h3>Welcome, General
+            <s:property value="%{#session.AUTHORIZED.firstName}"/>
+            <s:property value="%{#session.AUTHORIZED.middleName}"/>
+            <s:property value="%{#session.AUTHORIZED.lastName}"/>
+        </h3>
+        
+        
+        <form action="robot-update" method="POST">
+            <input type="text" name="name" value="<s:property value="%{jeager.name}"/>" />
+            <input type="text" name="origin" value="<s:property value="%{jeager.origin}"/>" />
+            <input type="text" name="classified" value="<s:property value="%{jeager.classified}"/>" />
+            <input type="date" name="dateLauched"  value="<s:date format="yyyy-MM-dd" name="%{jeager.dateLauched}"/>" />
+            <input type="number" name="" value="<s:property value="%{jeager.kaijuKilled}"/>" />
+            <input type="checkbox" name="available" value="true" 
+                   <s:if test="%{jeager.available}">
+                       checked="checked"
+                   </s:if>
+                   />
             <s:submit value="Update" align="center"/>
-        </s:form>
-        <s:url value="robot-manipulate" method="POST" var="back">
-            <s:param name="searchField" value=""/>
+        </form>
+        <s:url action="robot-manipulate" id="back">
+            <s:param name="searchField" value="%{searchField}"/>
         </s:url>
-        <a href="%{#back}">Back To Jeager Page</a>
+        <s:a href="%{back}">Back To Jeager Page</s:a>
     </body>
 </html>

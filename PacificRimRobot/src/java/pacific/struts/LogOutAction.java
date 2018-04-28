@@ -22,8 +22,6 @@ import org.apache.struts2.convention.annotation.Results;
 )
 public class LogOutAction extends ActionSupport {
 
-    private static final String SUCCESS = "success";
-
     public LogOutAction() {
     }
 

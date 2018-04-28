@@ -6,10 +6,8 @@
 package pacific.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import java.util.List;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
@@ -32,7 +30,6 @@ public class RobotManipulateAction extends ActionSupport {
     private String searchField;
     private String message = "";
     private List<RobotDTO> list;
-    private static String SUCCESS = "success";
 
     public RobotManipulateAction() {
     }
@@ -56,7 +53,6 @@ public class RobotManipulateAction extends ActionSupport {
     /**
      * @param searchField the searchField to set
      */
-    @RequiredFieldValidator(message = "Please type something")
     @RequiredStringValidator(message = "Please type something")
     public void setSearchField(String searchField) {
         this.searchField = searchField;

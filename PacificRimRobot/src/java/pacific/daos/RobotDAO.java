@@ -75,11 +75,11 @@ public class RobotDAO implements Serializable {
         try {
             connection = DBUtil.getConnection();
             if (connection != null) {
-                String sql = "Select Robot, ImgLink, Available from Robot where Robot = ?";
+                String sql = "Select ImgLink, Available, DateLauched, Classified, Origin, KaijuKilled from Robot where Robot = ?";
                 preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, "%" + name + "%");
+                preparedStatement.setString(1, name);
                 resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     classified = resultSet.getString("Classified");
                     origin = resultSet.getString("Origin");
                     imglink = resultSet.getString("ImgLink");

@@ -1,0 +1,32 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="login" class="duongpth.struts.LoginAction">
+            <result name="admin">admin.jsp</result>
+            <result name="user">user.jsp</result>
+            <result name="fail">error.jsp</result>
+            <result name="input">index.jsp</result>
+        </action>
+        <action name="search" class="duongpth.struts.SearchAction">
+            <result name="success">admin.jsp</result>
+        </action>
+        <action name="delete" class="duongpth.struts.DeleteAction">
+            <result name="failed">error.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">Search</param>
+                <param name="searchValue">${searchField}</param>
+            </result>
+        </action>
+        <action name="edit" class="duongpth.struts.DeleteAction">
+            <result name="failed">error.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">Search</param>
+                <param name="searchValue">${searchField}</param>
+            </result>            
+        </action>
+    </package>
+</struts>
