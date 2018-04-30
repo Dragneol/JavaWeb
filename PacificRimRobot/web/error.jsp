@@ -9,9 +9,9 @@
 <%@page isErrorPage="true" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 
-<jsp:include page="header.jsp"/>
-<div class="ai-video-wrapper">
-        <h3>Announcement</h3>
+<html>
+    <body>
+        <h3>Announcement outsite</h3>
         <a>An error occurs</a>
         <font color="red">${requestScope.ERROR}</font>
     </body>

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page errorPage="/errorPage.jsp" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
                 display: none;
                 position: fixed;
                 top: 0;
-                right: 50%; 
+                right: 0; 
                 width: auto;
                 height: 100vh;
                 z-index: 1;
@@ -59,9 +60,9 @@
                             <tr>
                                 <td><s:property value="%{#counter.count}"/></td>
                                 <td><img class="originImg" style="width : 100px ; height: 150px;"
-                                         src="<s:property value="#jeager.imgLink"/>" />
+                                         src="img/<s:property value="#jeager.imgLink"/>" />
                                     <div class="hiddenDivImg" >
-                                        <image style="height: 100%" src="<s:property value="#jeager.imgLink"/>"/>
+                                        <image style="height: 100%" src="img/<s:property value="#jeager.imgLink"/>"/>
                                     </div>
                                 </td>
                                 <td><s:property value="%{#jeager.name}"/></td>

@@ -94,4 +94,27 @@ public class RobotDAO implements Serializable {
         }
         return dto;
     }
+
+    public boolean updateByPrimaryKey(RobotDTO dto) throws NamingException, SQLException {
+        boolean updated = false;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "UPDATE Robot SET Available = ?, DateLauched = ?, Classified = ?, Origin = ?, KaijuKilled = ?, ImgLink = ? WHERE Robot = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setBoolean(1, dto.isAvailable());
+                preparedStatement.setDate(2, dto.getDateLauched());
+                preparedStatement.setString(3, dto.getClassified());
+                preparedStatement.setString(4, dto.getOrigin());
+                preparedStatement.setInt(5, dto.getKaijuKilled());
+                preparedStatement.setString(6, dto.getImgLink());
+                preparedStatement.setString(7, dto.getName());
+
+                updated = preparedStatement.executeUpdate() > 0;
+            }
+        } finally {
+            closeConnection();
+        }
+        return updated;
+    }
 }

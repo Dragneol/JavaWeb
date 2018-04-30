@@ -35,6 +35,7 @@ public class RobotManipulateAction extends ActionSupport {
     }
 
     public String execute() throws Exception {
+        System.out.println(searchField);
         RobotDAO dao = new RobotDAO();
         list = dao.findByLikeName(getSearchField());
         if (list.isEmpty()) {

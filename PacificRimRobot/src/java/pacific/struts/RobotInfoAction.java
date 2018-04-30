@@ -6,6 +6,8 @@
 package pacific.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
@@ -32,6 +34,20 @@ public class RobotInfoAction extends ActionSupport {
     public String execute() throws Exception {
         RobotDAO dao = new RobotDAO();
         jeager = dao.findByPrimaryKey(getName());
+        return SUCCESS;
+    }
+
+    @Actions(
+            @Action(
+                    value="view-detail",
+                    results = {
+                        @Result(location = "/pilot/robotDetail.jsp", name = "success")
+                    }
+            )
+    )
+    public String viewDetail() throws Exception{
+        RobotDAO dao = new RobotDAO();
+        jeager = dao.findByPrimaryKey(name);
         return SUCCESS;
     }
 

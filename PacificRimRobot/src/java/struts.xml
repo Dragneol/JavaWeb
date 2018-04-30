@@ -23,5 +23,16 @@
         <action name="generalFunc3">
             <result>general/pilotManaged.jsp</result>
         </action>
+        <action name="uploadImg" class="pacific.struts.FileUploadAction">
+            <interceptor-ref name="fileUpload">
+                <param name="maximumSize">2097152</param>				
+                <param name="allowedTypes">
+                    image/png,image/gif,image/jpeg,image/pjpeg
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result name="success" type="chain">robot-info</result>
+            <result name="input">/general/roboUpdater.jsp</result>
+        </action>
     </package>
 </struts>
