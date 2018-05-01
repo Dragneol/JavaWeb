@@ -4,9 +4,21 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">
+    <package name="default" extends="struts-default" namespace="/">
+        <!--
+        <global-results>
+            <result name="">/</result>
+        </global-results>
+        <interceptors>
+            <interceptor name="authentication" class="pacific.struts.Authentication"/>
+            <interceptor-stack name="interceptorStack">
+                <interceptor-ref name="authentication"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="interceptorStack"/>
+        -->
         <action name="">
-            <result>index.jsp</result>
+            <result >index.jsp</result>
         </action>
         <action name="generalLogin">
             <result>general/login.jsp</result>
@@ -25,7 +37,7 @@
         </action>
         <action name="uploadImg" class="pacific.struts.FileUploadAction">
             <interceptor-ref name="fileUpload">
-                <param name="maximumSize">2097152</param>				
+                <param name="maximumSize">2097152</param>
                 <param name="allowedTypes">
                     image/png,image/gif,image/jpeg,image/pjpeg
                 </param>

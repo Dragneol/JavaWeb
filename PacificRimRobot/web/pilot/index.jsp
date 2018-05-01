@@ -9,13 +9,13 @@
 <%@page errorPage="/error.jsp" %>
 <!DOCTYPE html>
 <html>
-    <body>         
-        <!--<h3>Welcome, ${sessionScope.AUTHORIZED.firstName} ${sessionScope.AUTHORIZED.lastName}</h3>-->
+    <body>
+        <jsp:include page="../header.jsp" />
         <h3>Welcome, <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.lastName}"/>
         </h3>
 
-        <a href="pilot-info?username=<s:property value='%{#session.AUTHORIZED.username}'/>">
+        <a href="pilot-detail?username=<s:property value='%{#session.AUTHORIZED.username}'/>">
             <img src="img/<s:property value='%{#session.AUTHORIZED.imgLink}'/>" width="200" height="200"/>
         </a>
 
@@ -40,7 +40,7 @@
                 --%>
                 <tr>
                     <td>
-                        <a href="pilot-info?username=<s:property value="username"/>">
+                        <a href="pilot-detail?username=<s:property value="username"/>">
                             <img src="img/<s:property value='imgLink'/>" width="200" height="200"/>
                         </a>
                         <%--
@@ -61,5 +61,6 @@
 </s:url>
 <s:a value="%{jeager}">View Robot</s:a><br/>
     --%>
+    <jsp:include page="../footer.jsp" />
 </body>
 </html>

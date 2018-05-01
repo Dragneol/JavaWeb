@@ -15,6 +15,7 @@
         <s:head/>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <h3>Welcome, General
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.miidleName}"/>
@@ -55,6 +56,8 @@
             <font color="red">
             <s:property value="%{message}"/>
             </font>
-        </s:else>
+        </s:else>            
+        <s:a action="main-page">General Page</s:a>
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>

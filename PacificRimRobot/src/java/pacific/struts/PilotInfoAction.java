@@ -20,7 +20,7 @@ import pacific.dtos.Skill;
  */
 public class PilotInfoAction extends ActionSupport {
 
-    private String username;
+    private String username, searchField;
     private List<Skill> skills;
     private PilotDTO pilot;
 
@@ -35,12 +35,37 @@ public class PilotInfoAction extends ActionSupport {
                         result = "error")
             },
             results = {
-                @Result(name = "success", location = "/pilot/pilotInfo.jsp", params = {"pilot", "${pilot}"})
+                @Result(name = "success", location = "/general/pilotUpdapter.jsp",
+                        params = {
+                            "pilot", "${pilot}",
+                            "searchField", "${searchField}"
+                        })
                 ,
-                @Result(name = "error", location = "/error.jsp", params = {"ERROR", "${pilot}"}),}
+                @Result(name = "error", location = "/error.jsp")
+            }
     )
     public String execute() throws Exception {
-        System.out.println(username);
+        PilotDAO dao = new PilotDAO();
+        setPilot(dao.findByPrimaryKey(username));
+        setSkills(dao.getAllSkillName());
+        setSkills(dao.getSkillOf(username, skills));
+        return SUCCESS;
+    }
+
+    @Action(
+            value = "pilot-detail",
+            exceptionMappings = {
+                @ExceptionMapping(
+                        exception = "java.lang.Exception",
+                        result = "error")
+            },
+            results = {
+                @Result(name = "success", location = "/pilot/pilotInfo.jsp", params = {"pilot", "${pilot}"})
+                ,
+                @Result(name = "error", location = "/error.jsp")
+            }
+    )
+    public String view() throws Exception {
         PilotDAO dao = new PilotDAO();
         setPilot(dao.findByUsername(username));
         setSkills(dao.getAllSkillName());
@@ -88,6 +113,20 @@ public class PilotInfoAction extends ActionSupport {
      */
     public void setSkills(List<Skill> skills) {
         this.skills = skills;
+    }
+
+    /**
+     * @return the searchField
+     */
+    public String getSearchField() {
+        return searchField;
+    }
+
+    /**
+     * @param searchField the searchField to set
+     */
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
     }
 
 }

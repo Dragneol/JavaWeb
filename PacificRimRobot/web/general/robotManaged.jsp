@@ -30,6 +30,7 @@
         <s:head/>
     </head>
     <body>
+        <jsp:include page="../header.jsp"/>
         <h3>Welcome, General
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.middleName}"/>
@@ -78,5 +79,7 @@
                 </tbody>
             </table>
         </s:else>
+        <s:a action="main-page">General Page</s:a>
+        <jsp:include page="../footer.jsp"/>
     </body>
 </html>

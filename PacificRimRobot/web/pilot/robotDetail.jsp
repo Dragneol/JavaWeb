@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <h3>Welcome, 
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.lastName}"/>
@@ -35,5 +36,6 @@
         Kaiju Killed <input type="number" name="kaijuKilled" value="<s:property value="%{jeager.kaijuKilled}"/>" readonly/><br/>
         <s:checkboxlist name="skills" list="%{skills}" listKey="id" listValue="name" value="skills.{?#this.checked == true}.{id}" label="Battle Skill" disabled="true"/><br/>
         <a href="pilot-view">Back to Index</a>
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>

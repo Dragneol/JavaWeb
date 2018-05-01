@@ -14,6 +14,7 @@
         <title>FBI International Defend</title>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <%--<jsp:include page="header.jsp"/>--%>
         <div class="ai-video-wrapper">
             <h3>Sign Up for Battle Against Kaiju</h3>
@@ -24,5 +25,6 @@
                 <s:textfield label="Firstname" name="firstname"/>
             </s:form>
             <%--<jsp:include page="footer.jsp"/>--%>
+            <jsp:include page="../footer.jsp" />
     </body>
 </html>

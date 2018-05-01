@@ -13,6 +13,7 @@
         <s:head/>
     </head>
     <body>
+        <jsp:include page="../header.jsp"/>
         <h3>Sign In As A General</h3>
         <s:form action="general-sign-in" method="POST">
             <s:textfield name="username" label="Username" value="duongpth"/>
@@ -23,6 +24,7 @@
             <s:property value="message"/>
             </font>
         </s:form>
+        <jsp:include page="../footer.jsp"/>
     </body>
 </html>
 

@@ -28,6 +28,7 @@ public class LogOutAction extends ActionSupport {
     public String execute() throws Exception {
         Map session = ActionContext.getContext().getSession();
         session.remove("AUTHORIZED");
+        session.remove("ROLE");
         return SUCCESS;
     }
 

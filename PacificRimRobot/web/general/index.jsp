@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <jsp:include page="../header.jsp"/>
         <h3>Welcome, General
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.middleName}"/>
@@ -18,6 +19,7 @@
         <a href="generalFunc1">Jeager Manipulate</a><br/>
         <a href="generalFunc2">Weapon Manipulate</a><br/>
         <a href="generalFunc3">Pilot Manipulate</a><br/>
+        <jsp:include page="../footer.jsp"/>
     </body>
 </html>
 

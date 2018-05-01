@@ -14,13 +14,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <h3>Welcome, <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.lastName}"/>
         </h3>
         <hr>
         <h4><s:property value="%{pilot.username}"/>'s Information</h4>
 
-        <s:form action="pilot-update">
+        <s:form>
             <img src="img/<s:property value='%{pilot.imgLink}'/>" width="200" height="200"/>
             <s:textfield readonly="true" label="First Name" name="firstName" value="%{pilot.firstName}" />
             <s:textfield readonly="true" label="Last Name" name="lastName" value="%{pilot.lastName}" />
@@ -32,5 +33,6 @@
         </s:form>
 
         <a href="pilot-view">Back to Index</a>
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>

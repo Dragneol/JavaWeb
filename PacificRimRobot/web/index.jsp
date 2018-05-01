@@ -6,7 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error.jsp" %>
-<html><body>
+<html>
+    <body>
+        <jsp:include page="header.jsp"/>
         <div class="ai-video-wrapper">
             <h3>WHO ARE YOU?</h3>
             <a href="generalLogin">I'm General</a>
@@ -14,5 +16,7 @@
             <h3>Don't join yet?</h3>
             <a href="pilotSignUp.jsp">Sign Up</a>
         </div>
-    </body></html>
+        <jsp:include page="footer.jsp"/>
+    </body>
+</html>
 

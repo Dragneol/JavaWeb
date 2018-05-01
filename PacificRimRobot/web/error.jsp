@@ -11,10 +11,12 @@
 
 <html>
     <body>
-        <h3>Announcement outsite</h3>
+        <jsp:include page="header.jsp"/>
+        <h3>Announcement</h3>
         <a>An error occurs</a>
         <font color="red">
         ${requestScope.ERROR}
         </font>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

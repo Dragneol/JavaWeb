@@ -93,6 +93,37 @@ public class PilotDAO implements Serializable {
         }
         return dto;
     }
+    public PilotDTO findByPrimaryKey(String username) throws NamingException, SQLException {
+        PilotDTO dto = null;
+        String firstname, lastname, citizenship, groupCode, ranker, imglink;
+        float weight, height;
+        boolean avaliable;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "Select FirstName, LastName, Weight, Height, GroupCode, Citizenship, Ranker, ImgLink, Available from Pilot Where Username = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, username);
+                resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    firstname = resultSet.getString("FirstName");
+                    lastname = resultSet.getString("LastName");
+                    groupCode = resultSet.getString("GroupCode");
+                    weight = resultSet.getFloat("Weight");
+                    height = resultSet.getFloat("Height");
+                    citizenship = resultSet.getString("Citizenship");
+                    ranker = resultSet.getString("Ranker");
+                    imglink = resultSet.getString("ImgLink");
+                    avaliable = resultSet.getBoolean("Available");
+                    dto = new PilotDTO(username, firstname, lastname, citizenship, groupCode, ranker, imglink, weight, height);
+                    dto.setAvailable(avaliable);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return dto;
+    }
 
     public List<PilotDTO> findByTeam(String groupCode, String username) throws NamingException, SQLException {
         List<PilotDTO> list = null;
@@ -123,7 +154,7 @@ public class PilotDAO implements Serializable {
         }
         return list;
     }
-    
+
     public String getRiderTeam(String username, String groupCode) throws SQLException, NamingException {
         String name = "none";
         try {
@@ -143,7 +174,7 @@ public class PilotDAO implements Serializable {
         }
         return name;
     }
-    
+
     public List<Skill> getAllSkillName() throws SQLException, NamingException {
         List<Skill> list = new ArrayList<>();
         try {
@@ -181,6 +212,39 @@ public class PilotDAO implements Serializable {
                             list.get(i).setChecked(true);
                         }
                     }
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+
+    public List<PilotDTO> findByName(String name) throws SQLException, NamingException {
+        List<PilotDTO> list = null;
+        PilotDTO dto = null;
+        String username, firstname, lastname, imglink, groupcode;
+        boolean available;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "Select Username, FirstName, LastName, ImgLink, GroupCode, Available from Pilot Where FirstName like ? Or LastName like ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, "%" + name + "%");
+                preparedStatement.setString(2, "%" + name + "%");
+                resultSet = preparedStatement.executeQuery();
+                list = new ArrayList<>();
+                while (resultSet.next()) {
+                    username = resultSet.getString("Username");
+                    firstname = resultSet.getString("FirstName");
+                    lastname = resultSet.getString("LastName");
+                    imglink = resultSet.getString("ImgLink");
+                    available = resultSet.getBoolean("Available");
+                    groupcode = resultSet.getString("GroupCode");
+                    dto = new PilotDTO(username, firstname, lastname, groupcode);
+                    dto.setImgLink(imglink);
+                    dto.setAvailable(available);
+                    list.add(dto);
                 }
             }
         } finally {

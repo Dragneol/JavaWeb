@@ -15,6 +15,7 @@
         <s:head/>
     </head>
     <body>
+        <jsp:include page="../header.jsp"/>
         <h3>Welcome, General
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.middleName}"/>
@@ -31,7 +32,7 @@
         </s:form>
         <hr>
         <h4>Jeager Info</h4>
-        <form action="robot-update" method="POST">
+        <form action="robot-update" method="POST" theme="simple">
             <s:hidden name="searchField" value="%{searchField}"/>
 
             <s:if test="%{userImageFileName != null && userImageFileName != ''}">
@@ -63,5 +64,6 @@
             <s:param name="searchField" value="%{searchField}"/>
         </s:url>
         <s:a href="%{back}">Back To Jeager Page</s:a>
+        <jsp:include page="../footer.jsp"/>
     </body>
 </html>

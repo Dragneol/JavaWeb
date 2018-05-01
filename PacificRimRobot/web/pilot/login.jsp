@@ -13,6 +13,7 @@
         <s:head/>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <h3>Sign In As A Pilot</h3>
         <s:form action="pilot-sign-in" method="POST">
             <s:textfield name="username" label="Username" value="jake"/>
@@ -23,5 +24,6 @@
             <s:property value="message"/>
             </font>
         </s:form>
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>

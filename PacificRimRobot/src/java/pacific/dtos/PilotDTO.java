@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,6 +15,7 @@ public class PilotDTO implements Serializable {
 
     private String username, password, firstName, lastName, citizenship, groupCode, ranker, imgLink;
     private float weight, height;
+    private boolean available;
 
     public PilotDTO() {
     }
@@ -181,5 +182,19 @@ public class PilotDTO implements Serializable {
      */
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    /**
+     * @return the available
+     */
+    public boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * @param available the available to set
+     */
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

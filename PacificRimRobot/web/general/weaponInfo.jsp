@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="../header.jsp" />
         <h3>Welcome, General
             <s:property value="%{#session.AUTHORIZED.firstName}"/>
             <s:property value="%{#session.AUTHORIZED.miidleName}"/>
@@ -26,14 +27,15 @@
             <s:checkbox label="Available" name="available"/>
             <s:submit value="Update" align="center"/>
         </s:form>
-        
+
         <%--
         <s:url action="weapon-manipulate" id="back">
             <s:param name="searchField" value="%{searchField}"/>
         </s:url>
         <s:a value="%{back}">Back To Weapon Page</s:a>
         --%>
-        
+
         <a href="weapon-manipulate?searchField=<s:property value='%{searchField}'/>">Back To Weapon Page</a>
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>
