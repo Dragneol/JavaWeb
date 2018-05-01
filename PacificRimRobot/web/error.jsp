@@ -13,6 +13,8 @@
     <body>
         <h3>Announcement outsite</h3>
         <a>An error occurs</a>
-        <font color="red">${requestScope.ERROR}</font>
+        <font color="red">
+        ${requestScope.ERROR}
+        </font>
     </body>
 </html>

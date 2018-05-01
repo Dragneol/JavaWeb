@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import pacific.dtos.RobotDTO;
+import pacific.dtos.Skill;
 import pacific.utils.DBUtil;
 
 /**
@@ -37,6 +38,69 @@ public class RobotDAO implements Serializable {
         if (connection != null) {
             connection.close();
         }
+    }
+
+    public List<String> getAllRobot() throws SQLException, NamingException {
+        List<String> list = new ArrayList<>();
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                preparedStatement = connection.prepareStatement("select Robot from Robot");
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    list.add(resultSet.getString("Robot"));
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+
+    public List<Skill> getAllSkillName() throws SQLException, NamingException {
+        List<Skill> list = new ArrayList<>();
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                preparedStatement = connection.prepareStatement("select BattleTypeId, BattleSkill from Skill");
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    list.add(new Skill(resultSet.getString("BattleTypeId"), resultSet.getString("BattleSkill")));
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+
+    public List<Skill> getSkillOf(String robot, List<Skill> fullList) throws SQLException, NamingException {
+        List<Skill> list = fullList;
+        String id;
+        int length = list.size();
+        Skill skill;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "select BattleTypeId from BattleSkill where Robot = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, robot);
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    id = resultSet.getString("BattleTypeId");
+                    for (int i = 0; i < length; i++) {
+                        skill = list.get(i);
+                        if (skill.getId().equals(id)) {
+//                            skill.setChecked(true);
+                            list.get(i).setChecked(true);
+                        }
+                    }
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
     }
 
     public List<RobotDTO> findByLikeName(String name) throws SQLException, NamingException {

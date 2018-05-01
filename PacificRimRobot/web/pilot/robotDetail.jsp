@@ -14,16 +14,26 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>Welcome, 
+            <s:property value="%{#session.AUTHORIZED.firstName}"/>
+            <s:property value="%{#session.AUTHORIZED.lastName}"/>
+        </h3>
+        <h4>This is your jeager info</h4>
+
+        <s:if test="%{userImageFileName != null && userImageFileName != ''}">
+            <img src="img/${requestScope.userImageFileName}" width="200" height="200" /><br/>
+            <input type="hidden" name="imgLink" value="${requestScope.userImageFileName}" /> 
+        </s:if>
+        <s:else>
+            <img src="img/${requestScope.jeager.imgLink}" width="200" height="200" /><br/>
+            <input type="hidden" name="imgLink" value="${requestScope.jeager.imgLink}" />
+        </s:else>
         Robot <input type="text" name="name" value="<s:property value="%{jeager.name}"/>" readonly/><br/>
-        Origin <input type="text" name="origin" value="<s:property value="%{jeager.origin}"/>" /><br/>
-        Classified <input type="text" name="classified" value="<s:property value="%{jeager.classified}"/>" /><br/>
-        Lauched Date <input type="date" name="date"  value="<s:date format="yyyy-MM-dd" name="%{jeager.dateLauched}"/>" /><br/>
-        Kaiju Killed <input type="number" name="kaijuKilled" value="<s:property value="%{jeager.kaijuKilled}"/>"/><br/>
-        Is Available <input type="checkbox" name="available" value="true" 
-    <s:if test="%{jeager.available}">
-        checked="checked"
-    </s:if>
-    /><br/>
-</body>
+        Origin <input type="text" name="origin" value="<s:property value="%{jeager.origin}"/>" readonly/><br/>
+        Classified <input type="text" name="classified" value="<s:property value="%{jeager.classified}"/>" readonly/><br/>
+        Lauched Date <input type="date" name="date"  value="<s:date format="yyyy-MM-dd" name="%{jeager.dateLauched}"/>" readonly/><br/>
+        Kaiju Killed <input type="number" name="kaijuKilled" value="<s:property value="%{jeager.kaijuKilled}"/>" readonly/><br/>
+        <s:checkboxlist name="skills" list="%{skills}" listKey="id" listValue="name" value="skills.{?#this.checked == true}.{id}" label="Battle Skill" disabled="true"/><br/>
+        <a href="pilot-view">Back to Index</a>
+    </body>
 </html>

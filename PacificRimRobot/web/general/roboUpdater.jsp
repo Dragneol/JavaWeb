@@ -32,37 +32,16 @@
         <hr>
         <h4>Jeager Info</h4>
         <form action="robot-update" method="POST">
-
-            <%--
-            <s:if test="%{userImageFileName != null && userImageFileName != ''}">
-                <s:hidden name="imgLink" value="%{userImageFileName}"/>
-            </s:if>
-            <s:else>
-                <s:hidden name="imgLink" value="img/%{jeager.imgLink}"/>
-            </s:else>
-            Jeager Info Image:	<img src="img/<s:property value="%{imgLink}"/>" width="100" height="100" /><br/>
-            --%>
-
-            <%--
-            <s:if test="%{userImageFileName != null && userImageFileName != ''}">
-                <s:hidden name="imgLink" value="img/${requestScope.userImageFileName}"/>
-            </s:if>
-            <s:else>
-                <s:hidden name="imgLink" value="img/${requestScope.jeager.imgLink}"/>
-            </s:else>
-            Jeager Info Image:	<img src="img/<s:property value="%{imgLink}"/>" width="100" height="100" /><br/>
-            --%>
-
-
             <s:hidden name="searchField" value="%{searchField}"/>
+
             <s:if test="%{userImageFileName != null && userImageFileName != ''}">
-                <img src="img/${requestScope.userImageFileName}" width="200" height="200" /><br/>
-                <input type="hidden" name="imgLink" value="${requestScope.userImageFileName}" /> 
+                <s:set name="imgLink" var="imgLink" value="%{userImageFileName}"/>
             </s:if>
             <s:else>
-                <img src="img/${requestScope.jeager.imgLink}" width="200" height="200" /><br/>
-                <input type="hidden" name="imgLink" value="${requestScope.jeager.imgLink}" />
+                <s:set name="imgLink" var="imgLink" value="%{jeager.imgLink}"/>
             </s:else>
+            <img src="img/<s:property value='imgLink'/>" width="200" height="200" /><br/>
+            <input type="hidden" name="imgLink" value="<s:property value='imgLink'/>"/>
 
             Robot <input type="text" name="name" value="<s:property value="%{jeager.name}"/>" readonly/><br/>
             Origin <input type="text" name="origin" value="<s:property value="%{jeager.origin}"/>" /><br/>

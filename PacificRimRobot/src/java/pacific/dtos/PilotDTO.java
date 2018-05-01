@@ -26,6 +26,18 @@ public class PilotDTO implements Serializable {
         this.groupCode = groupCode;
     }
 
+    public PilotDTO(String username, String firstName, String lastName, String citizenship, String groupCode, String ranker, String imgLink, float weight, float height) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.citizenship = citizenship;
+        this.groupCode = groupCode;
+        this.ranker = ranker;
+        this.imgLink = imgLink;
+        this.weight = weight;
+        this.height = height;
+    }
+
     /**
      * @return the username
      */

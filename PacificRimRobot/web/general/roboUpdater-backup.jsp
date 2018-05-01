@@ -19,13 +19,43 @@
             <s:property value="%{#session.AUTHORIZED.lastName}"/>
         </h3>
 
-
+        <h4>Edit Image</h4>
+        <s:actionerror />
+        <s:form action="uploadImg" method="post" enctype="multipart/form-data">
+            <s:file name="userImage" label="Image" />
+            <s:hidden name="searchField" value="%{searchField}"/>
+            <s:hidden name="name" value="%{name}"/>
+            <s:submit value="Upload" align="center" />
+        </s:form>
+        <hr>
+        <h4>Jeager Info</h4>
         <form action="robot-update" method="POST">
-            Robot <input type="text" name="name" value="<s:property value="%{jeager.name}"/>" /><br/>
+            <s:hidden name="searchField" value="%{searchField}"/>
+
+            <s:if test="%{userImageFileName != null && userImageFileName != ''}">
+                <s:set name="imgLink" var="imgLink" value="%{userImageFileName}"/>
+            </s:if>
+            <s:else>
+                <s:set name="imgLink" var="imgLink" value="%{jeager.imgLink}"/>
+            </s:else>
+            <img src="img/<s:property value="imgLink"/>" width="200" height="200" /><br/>
+            <input type="hidden" name="imgLink" value="<s:property value='imgLink'/>"/>
+
+            <%--
+                        <s:if test="%{userImageFileName != null && userImageFileName != ''}">
+                            <img src="img/${requestScope.userImageFileName}" width="200" height="200" /><br/>
+                            <input type="hidden" name="imgLink" value="${requestScope.userImageFileName}" /> 
+                        </s:if>
+                        <s:else>
+                            <img src="img/${requestScope.jeager.imgLink}" width="200" height="200" /><br/>
+                            <input type="hidden" name="imgLink" value="${requestScope.jeager.imgLink}" />
+                        </s:else>
+            --%>
+            Robot <input type="text" name="name" value="<s:property value="%{jeager.name}"/>" readonly/><br/>
             Origin <input type="text" name="origin" value="<s:property value="%{jeager.origin}"/>" /><br/>
             Classified <input type="text" name="classified" value="<s:property value="%{jeager.classified}"/>" /><br/>
-            Lauched Date <input type="date" name="dateLauched"  value="<s:date format="yyyy-MM-dd" name="%{jeager.dateLauched}"/>" /><br/>
-            Kaiju Killed <input type="number" name="" value="<s:property value="%{jeager.kaijuKilled}"/>" /><br/>
+            Lauched Date <input type="date" name="date"  value="<s:date format="yyyy-MM-dd" name="%{jeager.dateLauched}"/>" /><br/>
+            Kaiju Killed <input type="number" name="kaijuKilled" value="<s:property value="%{jeager.kaijuKilled}"/>"/><br/>
             Is Available <input type="checkbox" name="available" value="true" 
                                 <s:if test="%{jeager.available}">
                                     checked="checked"
@@ -33,9 +63,14 @@
                                 /><br/>
             <input type="submit" value="Update" name="action" />
         </form>
+        <font color="red">
+        <s:property value="%{message}"/>
+        </font>
+        <hr>
         <s:url action="robot-manipulate" id="back">
             <s:param name="searchField" value="%{searchField}"/>
         </s:url>
         <s:a href="%{back}">Back To Jeager Page</s:a>
+
     </body>
 </html>

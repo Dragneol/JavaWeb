@@ -12,11 +12,19 @@
     <body>         
         <!--<h3>Welcome, ${sessionScope.AUTHORIZED.firstName} ${sessionScope.AUTHORIZED.lastName}</h3>-->
         <h3>Welcome, <s:property value="%{#session.AUTHORIZED.firstName}"/>
-            <s:property value="%{#session.AUTHORIZED.lastName}"/></h3>
-            <s:url action="pilot-info" id="mine">
-                <s:param name="username" value="%{#session.AUTHORIZED.username}"/>
-            </s:url>
-            <s:a value="%{mine}"><img src="img/<s:property value='%{#session.AUTHORIZED.imgLink}'/>" width="200" height="200"/></s:a>
+            <s:property value="%{#session.AUTHORIZED.lastName}"/>
+        </h3>
+
+        <a href="pilot-info?username=<s:property value='%{#session.AUTHORIZED.username}'/>">
+            <img src="img/<s:property value='%{#session.AUTHORIZED.imgLink}'/>" width="200" height="200"/>
+        </a>
+
+        <%--
+        <s:url action="pilot-info" id="mine">
+            <s:param name="username" value="%{#session.AUTHORIZED.username}"/>
+        </s:url>
+        <s:a value="%{mine}"><img src="img/<s:property value='%{#session.AUTHORIZED.imgLink}'/>" width="200" height="200"/></s:a>
+        --%>
         <h4>Your team : <s:property value="%{#session.AUTHORIZED.groupCode}"/></h4>
         <table>
             <thead>
@@ -25,16 +33,33 @@
         </thead>
         <tbody>
             <s:iterator value="%{#session.PARTNER}">
+                <%--
+                <s:url action="pilot-info" id="partner">
+                    <s:param name="username" value="username"/>
+                </s:url>
+                --%>
                 <tr>
-                    <td><img src="img/<s:property value='imgLink'/>" width="200" height="200"/></td>
+                    <td>
+                        <a href="pilot-info?username=<s:property value="username"/>">
+                            <img src="img/<s:property value='imgLink'/>" width="200" height="200"/>
+                        </a>
+                        <%--
+                        <s:a value="%{partner}">
+                            <img src="img/<s:property value='imgLink'/>" width="200" height="200"/>
+                        </s:a>
+                        --%>
+                    </td>
                     <td><s:property value="firstName" /></td>
                 </tr>
             </s:iterator>
         </tbody>
     </table>
-    <s:url id="jeager" action="view-detail">
-        <s:param name="name" value="%{#session.JEAGER}"/>
-    </s:url>
-    <s:a value="%{jeager}">View Robot</s:a>
+    <a href="view-detail?name=<s:property value='%{#session.JEAGER}'/>">View Robot</a>
+    <%--
+<s:url id="jeager" action="view-detail">
+    <s:param name="name" value="%{#session.JEAGER}"/>
+</s:url>
+<s:a value="%{jeager}">View Robot</s:a><br/>
+    --%>
 </body>
 </html>

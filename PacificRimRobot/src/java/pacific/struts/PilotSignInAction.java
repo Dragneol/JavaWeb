@@ -15,16 +15,15 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 import org.apache.struts2.convention.annotation.Results;
 import pacific.daos.PilotDAO;
-import pacific.daos.RobotDAO;
 import pacific.dtos.PilotDTO;
 
 /**
  *
  * @author DuongPTHSE62871
  */
-@ResultPath("/pilot/")
+//@ResultPath("/pilot/")
 @Results({
-    @Result(name = "true", location = "index.jsp")
+    @Result(name = "true", location = "pilot-view", type = "redirectAction")
     ,
     @Result(name = "false", location = "login.jsp", params = {"ERROR", "${message}"})
     ,
@@ -46,10 +45,6 @@ public class PilotSignInAction extends ActionSupport {
             Map session = ActionContext.getContext().getSession();
             session.put("AUTHORIZED", dto);
             session.put("ROLE", "PILOT");
-            List<PilotDTO> list = dao.findByTeam(dto.getGroupCode(), username);
-            session.put("PARTNER", list);
-            String jeager = dao.getRiderTeam(username, dto.getGroupCode());
-            session.put("JEAGER", jeager);
         } else {
             setMessage("Invalid Username or Password");
         }

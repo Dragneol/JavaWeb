@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import pacific.dtos.PilotDTO;
+import pacific.dtos.Skill;
 import pacific.utils.DBUtil;
 
 /**
@@ -84,6 +85,7 @@ public class PilotDAO implements Serializable {
                     citizenship = resultSet.getString("Citizenship");
                     ranker = resultSet.getString("Ranker");
                     imglink = resultSet.getString("ImgLink");
+                    dto = new PilotDTO(username, firstname, lastname, citizenship, groupCode, ranker, imglink, weight, height);
                 }
             }
         } finally {
@@ -140,5 +142,50 @@ public class PilotDAO implements Serializable {
             closeConnection();
         }
         return name;
+    }
+    
+    public List<Skill> getAllSkillName() throws SQLException, NamingException {
+        List<Skill> list = new ArrayList<>();
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                preparedStatement = connection.prepareStatement("select BattleTypeId, BattleSkill from Skill");
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    list.add(new Skill(resultSet.getString("BattleTypeId"), resultSet.getString("BattleSkill")));
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+
+    public List<Skill> getSkillOf(String pilot, List<Skill> fullList) throws SQLException, NamingException {
+        List<Skill> list = fullList;
+        String id;
+        int length = list.size();
+        Skill skill;
+        try {
+            connection = DBUtil.getConnection();
+            if (connection != null) {
+                String sql = "select BattleTypeId from Ability where Pilot = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, pilot);
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    id = resultSet.getString("BattleTypeId");
+                    for (int i = 0; i < length; i++) {
+                        skill = list.get(i);
+                        if (skill.getId().equals(id)) {
+                            list.get(i).setChecked(true);
+                        }
+                    }
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
     }
 }
